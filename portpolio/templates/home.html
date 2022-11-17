@@ -1,0 +1,428 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM8NFVNVFY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KM8NFVNVFY');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Chetan Rathod | Portfolio | CRRathod | Backend Developer</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Chetan Rathod,CRRathod Portfolio, Chetan Rathod Portfolio, Chetan portfolio, chetan rathore, rathod, rathore, lonar, lonar information, CRRathod Blog, Blog, Tech blog, Chetan blog, Chetan,CRRathod Blog, Blog, Tech blog, chetan rathore, rdrathod, dr.rathod, rathod, blog website, backend, django website, technology blog, tech" name="keywords">
+
+    <meta content="Hello Everyone, I'm Chetan Rathod a Backend Developer and an aspiring computer engineering undergrad | CRRathod Portfolio Website." name="description">
+
+
+    <!-- LOgo Icon -->
+    <link href="{% static 'img/cr_logo.ico' %}" rel="icon">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'  %}" rel="stylesheet">
+    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" >
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <!-- Navbar Start -->
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+        <a href="/" class="navbar-brand ml-lg-3">
+            <h1 class="m-0 display-5"><span class="text-primary">Chetan</span>Rathod</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav m-auto py-0">
+                <a href="#home" class="nav-item nav-link active">Home</a>
+                <a href="#about" class="nav-item nav-link">About</a>
+                <a href="#qualification" class="nav-item nav-link">Quality</a>
+                <a href="#skill" class="nav-item nav-link">Skill</a>
+                <a href="#portfolio" class="nav-item nav-link">Portfolio</a>
+                <a href="#blog" class="nav-item nav-link">Blog</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
+            </div>
+            {% for about in abouts %}
+            <a href="{{about.resume}}" class="btn btn-outline-primary d-none d-lg-block">Download Resume</a>
+            {% endfor %}
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Video Modal Start -->
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Modal End -->
+
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home" style="min-height: 100vh;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
+                    <img class="img-fluid w-100 rounded-circle shadow-sm" src="{% static 'img/new_pro.png' %}" alt="">
+                </div>
+                <div class="col-lg-7 text-center text-lg-left">
+                    <h3 class="text-white font-weight-normal mb-3">I'm</h3>
+                    <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">Chetan Rathod</h1>
+                    <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
+                    <div class="typed-text d-none">Software Developer, Backend Developer, Python Developer, Odoo Developer</div>
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                        {% for about in abouts %}
+                        <a href="{{about.resume}}" class="btn btn-outline-light mr-5">Download Resume</a>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="about">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
+                <h1 class="position-absolute text-uppercase text-primary">About Me</h1>
+            </div>
+            <div class="row align-items-center">
+                {% for about in abouts %}
+                <div class="col-lg-5 pb-4 pb-lg-0">
+                    <img class="img-fluid rounded w-100" src="{{about.image.url}}" alt="">
+                </div>
+                <div class="col-lg-7">
+                    <h3 class="mb-4">{{about.other}}</h3>
+                    <p>{{about.intro}}</p>
+                    <div class="row mb-3">
+                        <div class="col-sm-6 py-2"><h6>Name: <span class="text-secondary">Chetan Rathod</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Birthday: <span class="text-secondary">10 December 2001</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Degree: <span class="text-secondary">{{about.degree}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Experience: <span class="text-secondary">{{about.experience}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Phone: <span class="text-secondary"><a href="#contact" data-toggle="tooltip" title="Fill contact form to request Mobile No.">{{about.Mobile_no}}</a></span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Email: <span class="text-secondary">{{about.email}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Address: <span class="text-secondary">{{about.address}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Freelance: <span class="text-secondary">Available</span></h6></div>
+                    </div>
+                    <a href="{{about.resume}}" class="btn btn-outline-primary mr-4">Download Resume</a>
+                    <a href="#contact" class="btn btn-outline-primary">Contact</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Qualification Start -->
+    <div class="container-fluid py-5" id="qualification">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Quality</h1>
+                <h1 class="position-absolute text-uppercase text-primary">Education & Experience</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">My Education</h3>
+                    <div class="border-left border-primary pt-2 pl-4 ml-2">
+                       
+                        <!-- This for Django -->
+                        <!-- Start for loop -->
+                        {%for edu in edu_data%}
+                        <div class="position-relative mb-4">
+                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                            <h5 class="font-weight-bold mb-1">{{edu.name}}</h5>
+                            <p class="mb-2"><strong>{{edu.university}}</strong> | <small>({{edu.date_from}} - {{edu.date_to}})</small></p>
+                            <p>{{edu.description}}</p>
+                        </div>
+                        <!-- End for loop -->
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">My Experience</h3>
+                    <div class="border-left border-primary pt-2 pl-4 ml-2">
+
+                        <!-- For Django for loop -->
+                        <!-- Start of for loop -->
+                        {%for exp in exp_data%}
+                        <div class="position-relative mb-4">
+                            <i class="far fa-dot-circle text-primary position-absolute" style="top: 2px; left: -32px;"></i>
+                            <h5 class="font-weight-bold mb-1">{{exp.job_title}}</h5>
+                            <p class="mb-2"><strong>{{exp.company_name}}</strong> | <small>({{exp.date_from}} - {{exp.date_to}})</small></p>
+                            <p>{{exp.description}}</p>
+                        </div>
+                        <!-- End of for loop -->
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Qualification End -->
+
+
+    <!-- Skill Start -->
+    <div class="container-fluid py-5" id="skill">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Skills</h1>
+                <h1 class="position-absolute text-uppercase text-primary">My Skills</h1>
+            </div>
+            <div class="row align-items-center">
+                {% for skill in skills%}
+
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-md-6">
+                    <div class="skill mb-4">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-bold">{{skill.name}}</h6>
+                            <h6 class="font-weight-bold">{{skill.skill_percentage}}%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-{%if skill.skill_percentage >= 90%}success{% elif skill.skill_percentage >= 80  %}info{% elif skill.skill_percentage >= 70 %}warning{% elif skill.skill_percentage >= 60 %}danger{% elif skill.skill_percentage >= 50 %}dark{%else%}secondary{%endif%}" role="progressbar" aria-valuenow="{{skill.skill_percentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                {% else %}
+                <div class="col-md-6">
+                    <div class="skill mb-4">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-bold">{{skill.name}}</h6>
+                            <h6 class="font-weight-bold">{{skill.skill_percentage}}%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-{%if skill.skill_percentage >= 90%}success{% elif skill.skill_percentage >= 80  %}info{% elif skill.skill_percentage >= 70 %}warning{% elif skill.skill_percentage >= 60 %}danger{% elif skill.skill_percentage >= 50 %}dark{%else%}secondary{%endif%}" role="progressbar" aria-valuenow="{{skill.skill_percentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div> 
+                </div>
+                {% endif %}
+
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    <!-- Skill End -->
+
+
+
+
+
+    <!-- Portfolio Start -->
+    <section class="work" id="work">
+    <div class="container-fluid pt-5 pb-3" id="portfolio">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Gallery</h1>
+                <h1 class="position-absolute text-uppercase text-primary">My Projects</h1>
+            </div>
+            
+            
+        <div class="box-container">
+            {% for project in projects %}
+            <div class="box tilt">
+                <img draggable="false" src="{{project.project_img.url}}" alt="Project Image" />
+                <div class="content">
+                  <div class="tag">
+                  <h3>{{project.name}}</h3>
+                  </div>
+                  <div class="desc">
+                    <p>{{project.desc}}</p>
+                    <div class="btns">
+                      <a href="{{project.view_link}}" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                      <a href="{{project.code_link}}" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            {% endfor %}          
+
+        </div>
+
+        </div>
+    </div>
+    <!-- Portfolio End -->
+</section>
+
+
+
+    <!-- Blog Start -->
+    <div class="container-fluid pt-5" id="blog">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Blog</h1>
+                <h1 class="position-absolute text-uppercase text-primary">Latest Blog</h1>
+            </div>
+            
+            <div class="row">
+                <!-- Django for loop start-->
+                {% for blog in blogs %}
+                {% if forloop.counter < 4 %}
+                <div class="col-lg-4 mb-5">
+                    <div class="position-relative mb-4">
+                        <img class="img-fluid rounded w-100" src="{{blog.post_img.url}}" alt="">
+                        <div class="blog-date">
+                            <h4 class="font-weight-bold mb-n1">{{blog.date|date:"d"}}</h4>
+                            <small class="text-white text-uppercase">{{blog.date|date:"M"}}</small>
+                        </div>
+                    </div>
+                    <h4>{{blog.name}}</h4>
+                    <h6 class="font-weight-medium mb-4">{{blog.short_content}}</h6>
+                    <a class="btn btn-sm btn-outline-primary py-2" href="/blog/post/{{blog.id}}/{{blog.post_url}}">Read More</a>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <!--For loop end-->
+            </div>
+            <a class="position-relative d-flex align-items-center justify-content-center btn btn-sm btn-outline-primary py-2" href="/blog/blog">See All Blogs</a>
+        </div>
+    </div>
+    <!-- Blog End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5" id="contact">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">Contact</h1>
+                <h1 class="position-absolute text-uppercase text-primary">Contact Me</h1>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form text-center">
+                        <div id="success"></div>
+                        <form method="post" action="/" name="sentMessage"
+                        >
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="control-group col-sm-6">
+                                    <input name="name" type="text" class="form-control p-4" id="name" placeholder="Your Name"
+                                        required data-validation-required-message="Please enter your name" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group col-sm-6">
+                                    <input name="email" type="email" class="form-control p-4" id="email" placeholder="Your Email"
+                                        required data-validation-required-message="Please enter your email" />
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <input name="subject" type="text" class="form-control p-4" id="subject" placeholder="Subject"
+                                    required  data-validation-required-message="Please enter a subject" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <textarea name="message" class="form-control py-3 px-4" rows="5" id="message" placeholder="Message"
+                                    required 
+                                    data-validation-required-message="Please enter your message"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-primary" type="submit" >Send
+                                    Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for message in messages%}
+            <div class="alert alert-success" role="alert">
+            {{message}}
+            {% endfor %}
+    </div>
+    <!-- Contact End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-primary text-white mt-5 py-5 px-sm-3 px-md-5">
+        <div class="container text-center py-5">
+            <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-light btn-social mr-2" href="https://twitter.com/ChetanR0101"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-light btn-social mr-2" href="https://www.linkedin.com/in/chetan-rathod-8b0a14207/"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-light btn-social mr-2" href="https://github.com/ChetanR01"><i class="fab fa-github"></i></a>
+                <a class="btn btn-light btn-social mr-2" href="https://www.facebook.com/profile.php?id=100024635051189"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-light btn-social" href="mailto:chetan@crrathod.tech"><i class="fa fa-fw fa-envelope"></i></a>
+                <a class="btn btn-light btn-social" href="https://www.instagram.com/chetan_rathod_01/"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <a class="text-white" href="#">Privacy</a>
+                <span class="px-3">|</span>
+                <a class="text-white" href="#">Terms</a>
+                <span class="px-3">|</span>
+                <a class="text-white" href="#">Credits</a>
+                <span class="px-3">|</span>
+                <a class="text-white" href="#">Help</a>
+                <span class="px-3">|</span>
+                <a class="text-white" href="#">About this website</a>
+            </div>
+            <p class="m-0">&copy; <a class="text-white font-weight-bold" href="https://chetanrathod.tech">Chetan Rathod</a>. All Rights Reserved. Designed by <a class="text-white font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
+            </p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Scroll to Bottom -->
+    <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-outline-dark px-3 back-to-top" style="width: 44px;"><i class="fa fa-angle-double-up"  ></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/typed/typed.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

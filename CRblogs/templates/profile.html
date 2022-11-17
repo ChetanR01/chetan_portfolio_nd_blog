@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}CRRathod Blog. | Profile | Chetan Rathod {% endblock %}
+
+{% block description %}Profile | Login/Signup | Signup to receive notifications for newly uploaded blogs | Manage your profile | CRRathod Blog. | Chetan Rathod{% endblock %}
+
+{% block active_profile %}active{% endblock %}
+
+{% comment %} When User is logged in in Show profile data{% endcomment %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+  <section class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-content">
+            <h4>Hello, {{user.first_name}}</h4>
+            <h2>Thank you for joining our community</h2>
+
+            <div class="d-flex justify-content-right mx-4 mb-3 mb-lg-4">
+            </div>
+            <div class="d-flex justify-content-left mx-4 mb-3 mb-lg-4">
+            <a href="/blog/profile/logout"  type="button" class="btn btn-primary btn-lg">Logout</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<section>
+  
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+          {% if user.extended_user.user_image.url %}
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{user.extended_user.user_image.url}}"><span class="font-weight-bold">{{user.first_name}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+            {% else %}
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://www.pngitem.com/pimgs/m/287-2876223_no-profile-picture-available-hd-png-download.png" alt="NO Image Found"><span class="font-weight-bold">{{user.first_name}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+            {% endif %}
+        </div>
+        <div class="col-md-5 border-right">
+          {% for message in messages%}
+          <div class="alert alert-success" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+          <form action="/blog/profile" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Details</h4>
+                </div>
+                 
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" name="first_name" class="form-control" placeholder="first name" value="{{user.first_name}}" ></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" name="last_name"  class="form-control" value="{{user.last_name}}" placeholder="surname"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" name="mobile_no" value="{{user.extended_user.mobile_no}}"></div>
+
+                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" name="email"  class="form-control" placeholder="enter email id" value="{{user.email}}"></div>
+
+                    <div class="col-md-12"><label class="labels">Profile Image</label><input type="file" name="profile_image"  class="form-control" id = "profile_image" ></div>
+
+                </div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Your Favorites</span></div><br>
+                <div class="col-md-12"><label class="labels">Categories</label><input type="text" class="form-control" placeholder="Categories" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Tags</label><input type="text" class="form-control" placeholder="tags" value=""></div>
+                <br>
+                <div class="mt-5 text-center"><button class="btn btn-secondary profile-button" type="button">Update Changes</button></div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+{% comment %} When User is not loged  {% endcomment %}
+{% else %}
+
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-content">
+              <h4>Login/SignUp</h4>
+              <h2>let’s Join our community</h2>
+
+              <div class="d-flex justify-content-right mx-4 mb-3 mb-lg-4">
+              </div>
+              <div class="d-flex justify-content-left mx-4 mb-3 mb-lg-4">
+              <a href="/blog/profile/login"  type="button" class="btn btn-primary btn-lg">Login</a>
+              
+              <a style="margin-left: 5em;" href="/blog/profile/signup"    type="button" class="btn btn-secondary btn-lg">SignUp</a>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  {% endif %}
+  
+  <!-- Banner Ends Here -->
+
+{%endblock%}
+
+
+
+{% comment %} For Login/SignUp page {% endcomment %}
+{% block section%}
+<section>
+    {% block login_signup %}{% endblock %}
+</section>
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+  

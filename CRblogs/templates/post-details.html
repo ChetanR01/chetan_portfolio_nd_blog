@@ -1,0 +1,159 @@
+{% extends "base2.html" %}
+{% load static %}
+{% load social_share %}
+
+{% block title %}{{blog.name}} | CRRathod Blog.| Chetan Rathod {% endblock %}
+{% block description %}{{blog.short_content|truncatechars:140 }} | CRRathod Blog.{% endblock %}
+
+{% block keywords %}{{blog.keywords}}{% endblock %}
+
+{% block active_post %}active{% endblock %}
+
+
+{% block content %}
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+        <section class="page-heading">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="text-content">
+                  <h4>Post Details</h4>
+                  <h2>Single blog post</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- Banner Ends Here -->
+
+{% endblock %}
+
+
+
+{% block sidecontent %}
+<div class="col-lg-8">
+    <div class="all-blog-posts">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="blog-post">
+            <div class="blog-thumb">
+              <img src="{{blog.post_img.url}}" alt="">
+            </div>
+            <div class="down-content">
+              <a href="/blog/category/{{blog.category.id}}"><span>{{blog.category}}</span></a>
+              <a href="/blog/post/{{blog.id}}/{{blog.post_url}}"><h2>{{blog.name}}</h2></a>
+              <ul class="post-info">
+                <li><a href="{{blog.upload_by_link}}">{{blog.upload_by}}</a></li>
+                <li><a href="/blog/post/{{blog.id}}/{{blog.post_url}}">{{blog.date}}</a></li>
+                <li><a href="/blog/post/{{blog.id}}/{{blog.post_url}}">{{comments.count}} Comments</a></li>
+              </ul>
+              <hr>
+              {{blog.main_content | safe }}
+              <hr>
+              <div class="post-options">
+                <div class="row">
+                  <div class="col-6">
+                    <ul class="post-tags">
+                      <li><i class="fa fa-tags"></i></li>
+                      {% for tag in blog.tags.all %}
+                      <li><a href="/blog/tag/{{tag.id}}">{{tag}}</a>,</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                    <ul class="post-share">
+                      <li><i class="fa fa-share-alt"></i></li>
+                      <li>{% post_to_facebook object_or_url "Facebook" %}</li>,
+                      <li>{% post_to_whatsapp object_or_url "WhatsApp" %}</li>,
+                      <li>{% post_to_twitter "{{blog.name}}: CRRathod Blog" object_or_url "Twitter" %}</li>,
+                      <li>{% post_to_telegram "{{blog.name}}: CRRathod Blog" object_or_url "Telegram" %}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="sidebar-item comments">
+            <div class="sidebar-heading">
+              <h2>{{comments.count}} Comments</h2>
+            </div>
+            <div class="content">
+              <ul>
+                {% for comment in comments %}
+                {% if comment.verified %}
+
+                {% for user in users %}
+                {% if user.id == comment.user_id %}
+                <li>
+                  <div class="author-thumb">
+                    <img src="{{user.extended_user.user_image.url}}" alt="User image">
+                  </div>
+                  <div class="right-content">
+                    <h4>{{user.first_name}} {{user.last_name}}<span>{{comment.date}}</span></h4>
+                    <p>{{comment.comment_msg}}</p>
+                  </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          {% if user.is_authenticated %}
+          <div class="sidebar-item submit-comment">
+            <div class="sidebar-heading">
+              <h2>Your comment</h2>
+            </div>
+            <div class="content">
+              
+              <form id="comment" action="/blog/post/{{blog.id}}/{{blog.post_url}}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <fieldset>
+                      <input name="name" type="text" id="name" placeholder="{{user.first_name}}" >
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <fieldset>
+                      <input name="post_id" type="hidden" id="post_id" value="{{blog.id}}" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" rows="6" id="message" placeholder="Type your comment" required=""></textarea>
+                    </fieldset>
+                  </div>
+                  
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="main-button">Submit</button>
+                    </fieldset>
+                  </div>
+                </div>
+
+                {% for message in messages%}
+                <div class="alert alert-success" role="alert">
+                  {{message}}
+                </div>
+                {% endfor %}
+
+              </form>
+              
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{%endblock%}

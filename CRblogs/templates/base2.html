@@ -1,0 +1,231 @@
+{% comment %} For header, footer and right side section {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLKNF0HVG8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-QLKNF0HVG8');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="{% block keywords %}Chetan Rathod | Blog{% endblock %}, Chetan,CRRathod Blog, Chetan Rathod, Blog, Tech blog, chetan rathore, rdrathod, dr.rathod, rathod, Chetan blog, blog website, backend, django website, technology blog, tech, lonar, lonar information">
+
+    <meta name="description" content="{% block description %}Chetan Rathod | Blog{% endblock %}">
+    <meta name="author" content="Chetan Rathod">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    {% comment %} <title>Stand CSS Blog by TemplateMo</title> {% endcomment %}
+    <title>{% block title %}Chetan Rathod | Blog{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    {% comment %} CR logo icon {% endcomment %}
+    <link href="{% static 'img/cr_logo.ico' %}" rel="icon">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-stand-blog.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+
+  </head>
+
+
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+
+
+    <!-- Header -->
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container">
+            <a class="navbar-brand" href="/blog"><h2>CRRathod Blog<em>.</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                  <a class="nav-link {% block active_index %}{% endblock %}" href="/blog">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li> 
+                <li class="nav-item {% block active_about %}{% endblock %}">
+                  <a class="nav-link" href="/blog/about">About</a>
+                  
+                </li>
+                <li class="nav-item {% block active_blog %}{% endblock %}">
+                  <a class="nav-link" href="/blog/blog">Blog Entries</a>
+                  
+                </li>
+               
+                <li class="nav-item  {% block active_contact %}{% endblock %}">
+                  <a class="nav-link" href="/blog/contact">Contact Us</a>
+                  
+                </li>
+                {% comment %} Profile {% endcomment %}
+                <li class="nav-item  {% block active_profile %}{% endblock %}">
+                  <a class="nav-link" href="/blog/profile">Profile</a> 
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+    
+
+    
+   
+
+    {% block content %}{% endblock %}
+
+    
+
+
+    <section class="blog-posts">
+        <div class="container">
+          <div class="row">
+
+        
+            {% block sidecontent %}{% endblock %}
+            
+
+
+            <div class="col-lg-4">
+              <div class="sidebar">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="sidebar-item search">
+                      <form id="search_form" name="gs" method="GET" action="{% url 'search' %}">
+                        {% comment %} {% csrf_token %} {% endcomment %}
+                        <input type="text" name="search" class="searchText" placeholder="type to search..." autocomplete="on">
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="sidebar-item recent-posts">
+                      <div class="sidebar-heading">
+                        <h2>Recent Posts</h2>
+                      </div>
+                      <div class="content">
+                        <ul>
+                          {% for blog in blogs %}
+                          {% if forloop.counter < 5 %}
+                          <li><a href="/blog/post/{{blog.id}}/{{blog.post_url}}">
+                            <h5>{{blog.name}}</h5>
+                            <span>{{blog.date}}</span>
+                          </a></li>
+                          {% endif %}
+                          {% endfor %}
+                          
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="sidebar-item categories">
+                      <div class="sidebar-heading">
+                        <h2>Categories</h2>
+                      </div>
+                      <div class="content">
+                        <ul>
+                          {% for category in categories %}
+                          <li><a href="/blog/category/{{category.id}}">- {{category}}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="sidebar-item tags">
+                      <div class="sidebar-heading">
+                        <h2>Tag Clouds</h2>
+                      </div>
+                      <div class="content">
+                        <ul>
+                          {% for tag in tags %}
+                          <li><a href="/blog/tag/{{tag.id}}">{{tag}}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+
+
+
+
+
+
+    <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="social-icons">
+                <li><a href="https://www.linkedin.com/in/chetan-rathod-8b0a14207/">Linkedin</a></li>
+                <li><a href="https://twitter.com/ChetanR0101">Twitter</a></li>
+                <li><a href="https://www.github.com/ChetanR01">Github</a></li>
+                <li><a href="https://www.instagram.com/chetan_rathod_01/">Instagram</a></li>
+                <li><a href="https://www.youtube.com/channel/UCJ_QxI3rnrC04K0SzvIJvlg">YouTube</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-12">
+              <div class="copyright-text">
+                <p>Copyright 2022 CRRathod Blog.  
+                   | Developed by: <a rel="nofollow" href="/" target="_parent">Chetan Rathod</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+  
+      <!-- Bootstrap core JavaScript -->
+      <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  
+      <!-- Additional Scripts -->
+      <script src="{% static 'assets/js/custom.js' %}"></script>
+      <script src="{% static 'assets/js/owl.js' %}"></script>
+      <script src="{% static 'assets/js/slick.js' %}"></script>
+      <script src="{% static 'assets/js/isotope.js' %}"></script>
+      <script src="{% static 'assets/js/accordions.js' %}"></script>
+  
+      <script language = "text/Javascript"> 
+        cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+        function clearField(t){                   //declaring the array outside of the
+        if(! cleared[t.id]){                      // function makes it static and global
+            cleared[t.id] = 1;  // you could use true and false, but that's more typing
+            t.value='';         // with more chance of typos
+            t.style.color='#fff';
+            }
+        }
+      </script>
+  
+    </body>

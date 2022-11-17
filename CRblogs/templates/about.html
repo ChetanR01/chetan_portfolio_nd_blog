@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}CRRathod Blog. | About | Chetan Rathod {% endblock %}
+
+{% block description %}Hello, I'm Chetan Rathod a Backend Developer and aspiring computer engineering undergrad. I’m pretty conversant in Python and backend Development in Django. {% endblock %}
+
+{% block active_about %}active{% endblock %}
+
+{% block content %}
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-content">
+              <h4>about us</h4>
+              <h2>more about us!</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Banner Ends Here -->
+
+{%endblock%}
+
+{% block section %}
+
+<section class="about-us">
+    <div class="container">
+        
+      <div class="row">
+        <div class="col-lg-12">
+          <img src="{% static 'assets/images/about-us.jpg' %}" alt="">
+        </div>
+      </div>
+
+      <div class="container-fluid py-5" id="about">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
+                <h1 class="position-absolute text-uppercase text-primary">About Me</h1>
+            </div>
+            <div class="row align-items-center">
+                {% for about in abouts %}
+                <div class="col-lg-5 pb-4 pb-lg-0">
+                    <img class="img-fluid rounded w-100" src="{{about.image.url}}" alt="">
+                </div>
+                <div class="col-lg-7">
+                    <h3 class="mb-4">{{about.other}}</h3>
+                    <p>{{about.intro}}
+                      </p>
+                    <div class="row mb-3">
+                        <div class="col-sm-6 py-2"><h6>Name: <span class="text-secondary">Chetan Rathod</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Birthday: <span class="text-secondary">10 December 2001</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Degree: <span class="text-secondary">{{about.degree}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Experience: <span class="text-secondary">{{about.experience}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Phone: <span class="text-secondary"><a href="/blog/contact" data-toggle="tooltip" title="Fill contact form to request Mobile No.">{{about.Mobile_no}}</a></span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Email: <span class="text-secondary">{{about.email}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Address: <span class="text-secondary">{{about.address}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Freelance: <span class="text-secondary">Available</span></h6></div>
+                    </div>
+                    <a href="{{about.resume}}" class="btn btn-outline-primary mr-4">Download Resume</a>
+                    <a href="/blog/contact" class="btn btn-outline-primary">Contact</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+      
+    <p></p>
+    {% comment %} For about project {% endcomment %}
+    <div class="container-fluid py-5" id="about">
+      <div class="container">
+          <div class="position-relative d-flex align-items-center justify-content-center">
+              <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;">About</h1>
+              <h3 class="position-absolute text-uppercase text-primary">CRRathod Blog.</h3>
+          </div>
+          <div class="row align-items-center">
+              
+              <div class="col-lg-12">
+                  <h3 class="mb-4">About This Website</h3>
+                  <p>This is a Blog Website containing blogs of different categories and domains. I have developed this website to practice my Django skills.
+                    The website front-end template in downloaded from <a href="https://templatemo.com/">TemplateMo</a>. I did some changed in template required for this website. And added all Backend related stuff using Python-Django. This website provides all the features listed below. I used the data for the blogs from <a href="https://www.wikipedia.com">Wikipedia</a> in starting. I will try to add my own blog posts on this website in near future.
+                    </p>
+
+                    <div ><h4>Features of CRRathod Blog.</h4></div>
+                  <div class="row mb-3">
+                      
+                      <div class="col-sm-6 py-2"><h6>&#9673; Category Wise Blogs</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Tags Wise Blogs</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Easy Navigation.</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Email Subscription.</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Easy to Share on Social Media</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Commenting Option</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Dynamic Presentation</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Trending Blogs on Home Page</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Search For Blog Post</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Proper Pagination</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; User Login/SignUp</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Logged-in User Profile</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Contact Form</h6></div>
+                      <div class="col-sm-6 py-2"><h6>&#9673; Subscription By Categories and Tags</h6></div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+
+    </div>
+  </section>
+
+{%endblock%}
